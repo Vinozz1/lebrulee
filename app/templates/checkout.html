@@ -259,7 +259,7 @@
         {% if cart_items %}
         <div class="panel">
             <h2><i class="fas fa-map-marker-alt"></i> Shipping Details</h2>
-            <form action="{{ url_for('main.checkout') }}" method="POST" onsubmit="return confirmOrder(event)">
+            <form id="checkout-form" action="{{ url_for('main.checkout') }}" method="POST">
                 <label for="name" class="block font-medium text-gray-700">Full Name</label>
                 <input type="text" id="name" name="name" class="form-input" required>
 
@@ -395,47 +395,37 @@
 
 {% block extra_js %}
 <script>
-    function confirmOrder(event) {
-        event.preventDefault();
+    document.addEventListener('DOMContentLoaded', () => {
+        // Checkout form confirmation modal
+        const checkoutForm = document.getElementById('checkout-form');
+        if (checkoutForm) {
+            checkoutForm.addEventListener('submit', function(event) {
+                event.preventDefault();
 
-        const form = event.target.closest('form') || event.target;
+                const form = this;
 
-        const modal = document.createElement('div');
-        modal.className = "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4";
-        modal.innerHTML = `
-            <div class="bg-white p-6 rounded-xl shadow-2xl w-full max-w-sm text-center">
-                <p class="text-xl font-semibold mb-6">Confirm Order</p>
-                <p class="mb-6">Are you sure you want to place this order?</p>
-                <div class="flex justify-around space-x-4">
-                    <button type="button" class="cancel-order-btn px-5 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition">Cancel</button>
-                    <button type="button" class="confirm-order-btn px-5 py-2 bg-[#0a1530] text-[#fbbf24] rounded-lg hover:bg-[#112042] transition font-bold">Confirm</button>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
+                const modal = document.createElement('div');
+                modal.className = "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4";
+                modal.innerHTML = `
+                    <div class="bg-white p-6 rounded-xl shadow-2xl w-full max-w-sm text-center">
+                        <p class="text-xl font-semibold mb-6">Confirm Order</p>
+                        <p class="mb-6">Are you sure you want to place this order?</p>
+                        <div class="flex justify-around space-x-4">
+                            <button type="button" class="modal-cancel-btn px-5 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition">Cancel</button>
+                            <button type="button" class="modal-confirm-btn px-5 py-2 bg-[#0a1530] text-[#fbbf24] rounded-lg hover:bg-[#112042] transition font-bold">Confirm</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
 
-        const cancelBtn = modal.querySelector('.cancel-order-btn');
-        const confirmBtn = modal.querySelector('.confirm-order-btn');
+                modal.querySelector('.modal-cancel-btn').addEventListener('click', () => modal.remove());
 
-        if (cancelBtn) {
-            cancelBtn.addEventListener('click', () => modal.remove());
-        }
-
-        if (confirmBtn) {
-            confirmBtn.addEventListener('click', () => {
-                modal.remove();
-                if (form) {
+                modal.querySelector('.modal-confirm-btn').addEventListener('click', () => {
+                    modal.remove();
                     form.submit();
-                }
+                });
             });
         }
-
-        return false;
-    }
-
-    window.confirmOrder = confirmOrder;
-
-    document.addEventListener('DOMContentLoaded', () => {
         const codDetails = document.getElementById('cod-details');
         const transferDetails = document.getElementById('transfer-details');
         const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
