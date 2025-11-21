@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}News & Insights{% endblock %}
+
+{% block extra_css %}
+<style>
+    .news-hero {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+        padding: 6rem 2rem 4rem;
+        text-align: center;
+    }
+
+    .news-hero h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 1rem;
+    }
+
+    .news-hero p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .news-section {
+        padding: 4rem 2rem;
+        background: white;
+    }
+
+    .news-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .news-card {
+        background: var(--gray-50);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--gray-200);
+        transition: all 0.3s;
+    }
+
+    .news-card:hover {
+        border-color: var(--primary-light);
+        box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1);
+    }
+
+    .news-card-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .news-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .news-card h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+    .news-meta {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.85rem;
+        color: var(--text-light);
+    }
+
+    .news-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .news-meta i {
+        color: var(--primary);
+    }
+
+    .news-card p {
+        color: var(--text);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .news-card .btn {
+        margin-top: 0.5rem;
+    }
+
+    .news-tag {
+        display: inline-block;
+        padding: 0.3rem 0.75rem;
+        background: rgba(14, 165, 233, 0.1);
+        color: var(--primary);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-right: 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="news-hero">
+    <h1>News & Market Insights</h1>
+    <p>Stay informed with the latest market news, analysis, and educational content to help you make better investment decisions.</p>
+</section>
+
+<section class="news-section">
+    <div class="news-container">
+        <div class="news-card">
+            <div class="news-card-header">
+                <div class="news-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div>
+                    <h3>Understanding Market Volatility in 2025</h3>
+                    <div class="news-meta">
+                        <span><i class="fas fa-calendar"></i> Nov 21, 2025</span>
+                        <span><i class="fas fa-clock"></i> 5 min read</span>
+                    </div>
+                </div>
+            </div>
+            <p>Market volatility can be intimidating for new investors, but understanding its causes and how to navigate it is essential for long-term success. In this article, we explore the key factors driving market movements and strategies to stay calm during turbulent times.</p>
+            <span class="news-tag">Market Analysis</span>
+            <span class="news-tag">Beginner</span>
+        </div>
+
+        <div class="news-card">
+            <div class="news-card-header">
+                <div class="news-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <div>
+                    <h3>Beginner's Guide to Diversification</h3>
+                    <div class="news-meta">
+                        <span><i class="fas fa-calendar"></i> Nov 20, 2025</span>
+                        <span><i class="fas fa-clock"></i> 8 min read</span>
+                    </div>
+                </div>
+            </div>
+            <p>Don't put all your eggs in one basket - this age-old wisdom is the foundation of portfolio diversification. Learn why spreading your investments across different assets is crucial for managing risk and building long-term wealth.</p>
+            <span class="news-tag">Portfolio</span>
+            <span class="news-tag">Risk Management</span>
+        </div>
+
+        <div class="news-card">
+            <div class="news-card-header">
+                <div class="news-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <div>
+                    <h3>Long-term vs Short-term Investing</h3>
+                    <div class="news-meta">
+                        <span><i class="fas fa-calendar"></i> Nov 19, 2025</span>
+                        <span><i class="fas fa-clock"></i> 6 min read</span>
+                    </div>
+                </div>
+            </div>
+            <p>Both long-term and short-term investing have their place in a well-rounded strategy. Understand the differences, risks, and potential rewards of each approach to determine which aligns best with your financial goals.</p>
+            <span class="news-tag">Strategy</span>
+            <span class="news-tag">Education</span>
+        </div>
+
+        <div class="news-card">
+            <div class="news-card-header">
+                <div class="news-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div>
+                    <h3>5 Common Mistakes New Investors Make</h3>
+                    <div class="news-meta">
+                        <span><i class="fas fa-calendar"></i> Nov 18, 2025</span>
+                        <span><i class="fas fa-clock"></i> 7 min read</span>
+                    </div>
+                </div>
+            </div>
+            <p>Learning from others' mistakes can save you money and heartache. We cover the most common pitfalls that new investors encounter and how to avoid them on your investment journey.</p>
+            <span class="news-tag">Tips</span>
+            <span class="news-tag">Beginner</span>
+        </div>
+    </div>
+</section>
+{% endblock %}

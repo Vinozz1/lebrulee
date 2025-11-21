@@ -3,385 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}LeBrulee - Bakery & Cafe{% endblock %}</title>
+    <title>{% block title %}IGSCapital{% endblock %} | Investment Learning Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --primary-light: #38bdf8;
+            --secondary: #06b6d4;
+            --accent: #7dd3fc;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #334155;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+        }
 
-<style>
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-50);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
 
-body {
-    /* Poppins for general body text (paragraphs, footer text) */
-    font-family: 'Poppins', sans-serif; 
-    line-height: 1.6;
-    color: #333;
-    background-color: #fcfcfc;
-}
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 2rem;
+        }
 
-/* TYPOGRAPHY */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-}
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
 
-/* --- NAVBAR STYLES --- */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
 
-header {
-    /* Removed padding to eliminate gap above */
-    background: transparent; 
-    padding: 0; 
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-}
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
 
-nav {
-    /* Full width, no max-width limit */
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem; /* Horizontal padding for content */
-    
-    /* No Radius */
-    border-radius: 0;
-    
-    /* Solid Background */
-    background: #0a1a44; 
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-/* LOGO */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    text-decoration: none;
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
 
-.logo-img {
-    height: 45px; 
-    width: auto;
-}
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
 
-.logo-text {
-    /* Playfair Font */
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: #fbbf24;
-    letter-spacing: 0.5px;
-}
+        .nav-links a:hover {
+            color: var(--primary);
+        }
 
-/* NAV LINKS */
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-    align-items: center;
-}
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-.nav-links a {
-    /* Playfair Font */
-    font-family: 'Playfair Display', serif;
-    color: #f8fafc;
-    text-decoration: none;
-    font-weight: 500; 
-    padding: 0.35rem 0;
-    position: relative;
-    font-size: 1.05rem;
-}
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
 
-/* Underline hover effect */
-.nav-links a:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    display: block;
-    margin-top: 5px;
-    left: 0;
-    background: #fbbf24;
-    transition: width 0.3s ease;
-}
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+        }
 
-.nav-links a:hover:after {
-    width: 100%;
-}
+        .btn-ghost:hover {
+            background: var(--gray-100);
+            color: var(--primary);
+        }
 
-/* AUTH */
-.auth-links {
-    display: flex;
-    gap: 1.2rem;
-    align-items: center;
-}
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+        }
 
-.auth-links a, .auth-links span {
-    /* Playfair Font */
-    font-family: 'Playfair Display', serif;
-    color: #f8fafc;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.45);
+        }
 
-.auth-links a:hover {
-    color: #fbbf24;
-}
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
 
-.logout-btn {
-    background-color: #fbbf24;
-    color: #0a1a44 !important; /* Force dark text on gold button */
-    border-radius: 5px;
-    padding: 0.4rem 1.2rem;
-    font-weight: 700;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
 
-.logout-btn:hover {
-    background-color: #e0ac1a;
-}
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.05rem;
+        }
 
-main {
-    min-height: calc(100vh - 200px);
-}
+        /* Main content */
+        main {
+            padding-top: 72px;
+            min-height: calc(100vh - 72px);
+        }
 
-/* --- FOOTER STYLES (Restored) --- */
-footer {
-    background: #0a1a44; 
-    color: white;
-    padding: 4.5rem 2rem 3rem; 
-    margin-top: 5rem; 
-    border-top: 5px solid #fbbf24; /* Gold accent line */
-}
+        /* Hero section gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 25%, #7dd3fc 50%, #38bdf8 75%, #0ea5e9 100%);
+        }
 
-.footer-content-new {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 3rem;
-}
+        /* Flash messages */
+        .flash-messages {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
 
-.footer-logo-section p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
-    margin-top: 1rem;
-    color: rgba(255, 255, 255, 0.85);
-}
+        .flash {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
 
-.footer-logo-img {
-    width: 150px;
-    filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.4));
-}
+        .flash.success {
+            background: var(--success);
+            color: white;
+        }
 
-.footer-links-section h3, 
-.footer-motto-section h3, 
-.footer-social-section h3 {
-    font-family: 'Playfair Display', serif;
-    color: #fbbf24;
-    font-size: 1.35rem;
-    margin-bottom: 1.2rem;
-}
+        .flash.error {
+            background: var(--error);
+            color: white;
+        }
 
-.footer-links-section a {
-    display: block; 
-    font-family: 'Poppins', sans-serif;
-    color: rgba(255, 255, 255, 0.85);
-    text-decoration: none;
-    margin-bottom: 0.5rem;
-    transition: color 0.3s ease, padding-left 0.3s ease;
-}
+        .flash.info {
+            background: var(--primary);
+            color: white;
+        }
 
-.footer-links-section a:hover {
-    color: #fbbf24;
-    padding-left: 5px;
-    text-decoration: underline;
-}
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
 
-.footer-motto-section p {
-    font-family: 'Poppins', sans-serif;
-    color: rgba(255, 255, 255, 0.85);
-    font-style: italic;
-}
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--gray-200);
+            padding: 4rem 2rem 2rem;
+        }
 
-/* SOCIAL ICONS */
-.social-icons {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.7rem;
-}
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
 
-.social-icons a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%; /* Circular */
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.4);
-    color: white;
-    transition: 0.3s ease;
-}
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
 
-.social-icons a:hover {
-    background: #fbbf24;
-    color: #0a1a44;
-    border-color: #fbbf24;
-    transform: translateY(-2px);
-}
+        .footer-brand .logo-text {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
 
-.social-icons svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
+        .footer-brand p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
 
-/* LEGAL */
-.footer-separator {
-    max-width: 1200px;
-    margin: 3.5rem auto 2rem;
-    border-top: 1px solid rgba(255,255,255,0.25);
-}
+        .footer-col h4 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
 
-.footer-bottom-new {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.75);
-    font-family: 'Poppins', sans-serif;
-}
+        .footer-col ul {
+            list-style: none;
+        }
 
-.footer-legal-links a {
-    color: rgba(255,255,255,0.75);
-    margin-left: 1rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
 
-.footer-legal-links a:hover {
-    color: #fbbf24;
-    text-decoration: underline;
-}
+        .footer-col ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
 
-</style>
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
 
-{% block extra_css %}{% endblock %}
+        .footer-bottom {
+            border-top: 1px solid var(--dark-light);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-auth {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Utility classes */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-center { text-align: center; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+
+        {% block extra_css %}{% endblock %}
+    </style>
 </head>
-
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="{{ url_for('main.index') }}" class="logo">
+                <div class="logo-icon">IG</div>
+                <span class="logo-text">IGSCapital</span>
+            </a>
 
-<header>
-    <nav>
-        <a href="{{ url_for('main.index') }}" class="logo">
-            <img src="{{ url_for('static', filename='logo.png') }}" class="logo-img">
-            <span class="logo-text">LeBrulee</span>
-        </a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.learn') }}">Learn</a></li>
+                <li><a href="{{ url_for('main.news') }}">News</a></li>
+                <li><a href="{{ url_for('main.about') }}">About</a></li>
+            </ul>
 
-        <ul class="nav-links">
-            <li><a href="{{ url_for('main.index') }}">Home</a></li>
-            <li><a href="{{ url_for('main.about') }}">About</a></li>
-            <li><a href="{{ url_for('main.menu') }}">Menu</a></li>
-            <li><a href="{{ url_for('main.store') }}">Store</a></li>
-            <li><a href="{{ url_for('main.contact') }}">Contact Us</a></li>
-            <li><a href="{{ url_for('main.orders') }}">Deliveries</a></li>
-        </ul>
+            <div class="nav-auth">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('main.dashboard') }}" class="btn btn-ghost">
+                        <i class="fas fa-user-circle"></i> Dashboard
+                    </a>
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-outline">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-ghost">Login</a>
+                    <a href="{{ url_for('auth.signup') }}" class="btn btn-primary">Get Started</a>
+                {% endif %}
+            </div>
 
-        <div class="auth-links">
-            {% if current_user.is_authenticated %}
-                <span style="color: #fbbf24;">👤 {{ current_user.fullname }}</span>
-                <a href="{{ url_for('main.profile') }}">Profile</a>
-                <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
-            {% else %}
-                <a href="{{ url_for('auth.login') }}">Login</a>
-                <a href="{{ url_for('main.signup') }}" class="logout-btn">Sign Up</a> 
-            {% endif %}
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
-</header>
 
-<main>
-    {% block content %}{% endblock %}
-</main>
-
-<footer>
-    <div class="footer-content-new">
-
-        <div class="footer-logo-section">
-            <img src="{{ url_for('static', filename='logo.png') }}" class="footer-logo-img">
-            <p>Crafting French-inspired bakery delights with love and passion.</p>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="flash {{ category }}">
+                <i class="fas {% if category == 'success' %}fa-check-circle{% elif category == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %}"></i>
+                {{ message }}
+            </div>
+            {% endfor %}
         </div>
+        {% endif %}
+    {% endwith %}
 
-        <div class="footer-links-section">
-            <h3>Quick Links</h3>
-            <a href="/">Home</a>
-            <a href="/store">Store</a>
-            <a href="/menu">Menu</a>
-            <a href="/about">About Us</a>
-            <a href="/contact">Contact</a>
-        </div>
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-        <div class="footer-motto-section">
-            <h3>Our Commitment</h3>
-            <p>Premium quality • Authentic taste • Everyday happiness</p>
-            <br>
-            <h3>Visit Us</h3>
-            <p>123 Patisserie Ave, Sweet Town, CA 90210</p>
-        </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">IG</div>
+                        <span class="logo-text">IGSCapital</span>
+                    </div>
+                    <p class="mt-4">Empowering your investment journey with knowledge, insights, and community support.</p>
+                </div>
 
-        <div class="footer-social-section">
-            <h3>Connect With Us</h3>
-            <div class="social-icons">
+                <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">Getting Started</a></li>
+                        <li><a href="#">Investment Basics</a></li>
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Risk Management</a></li>
+                    </ul>
+                </div>
 
-                <a href="#" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm4.8-2.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/></svg>
-                </a>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">News & Updates</a></li>
+                        <li><a href="#">Market Insights</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
 
-                <a href="#" aria-label="X (Twitter)">
-                    <svg viewBox="0 0 24 24"><path d="M18 2l-5.5 7L19 22h-3l-4-6-5 6H2l7.5-8.5L2 2h3l4 5 4-5h5z"/></svg>
-                </a>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
 
-                <a href="#" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.6h-1.3c-1.3 0-1.7.8-1.7 1.6V12H19l-.5 3h-2.9v7A10 10 0 0022 12z"/></svg>
-                </a>
-
-                <a href="#" aria-label="TikTok">
-                    <svg viewBox="0 0 24 24"><path d="M20 8.1a5.5 5.5 0 01-3.3-1.1A5.7 5.7 0 0115 4h-2v10.2a2.3 2.3 0 11-2-2.3V9a5 5 0 104 4.9V8.7c1 1 2.3 1.5 3 1.5h0V8.1z"/></svg>
-                </a>
-
-                <a href="#" aria-label="Threads">
-                    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1.7 14.2c-1.4 0-2.5-.8-3-2 .3-.2.7-.3 1.2-.3 1 0 1.6.6 1.9 1.3.3-.4.5-1 .5-1.6 0-1.3-.7-2.2-2.3-2.2-.7 0-1.3.1-1.8.3-.1-.4-.2-.8-.2-1.2 0-2 1.4-3.5 3.7-3.5 2.4 0 4 1.6 4 4.4 0 2.8-1.4 5-3.9 5z"/></svg>
-                </a>
-
+            <div class="footer-bottom">
+                <p>&copy; 2025 IGSCapital. All rights reserved. Investment involves risk.</p>
             </div>
         </div>
+    </footer>
 
-    </div>
+    <script>
+        // Auto-hide flash messages
+        setTimeout(() => {
+            document.querySelectorAll('.flash').forEach(flash => {
+                flash.style.opacity = '0';
+                flash.style.transform = 'translateX(100px)';
+                setTimeout(() => flash.remove(), 300);
+            });
+        }, 4000);
+    </script>
 
-    <div class="footer-separator"></div>
-
-    <div class="footer-bottom-new">
-        <p>&copy; 2025 LeBrulee Bakery & Cafe. All rights reserved.</p>
-        <div class="footer-legal-links">
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
-        </div>
-    </div>
-</footer>
-
-{% block extra_js %}{% endblock %}
-
+    {% block extra_js %}{% endblock %}
 </body>
 </html>
