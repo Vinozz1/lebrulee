@@ -69,6 +69,7 @@
             text-decoration: none;
         }
 
+        /* Logo icon - use this OR logo-img, not both */
         .logo-icon {
             width: 40px;
             height: 40px;
@@ -80,6 +81,16 @@
             color: white;
             font-weight: 700;
             font-size: 1.2rem;
+        }
+
+        /* Logo image - for custom logo */
+        .logo-img {
+            max-width: 45px;
+            max-height: 45px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
         }
 
         .logo-text {
@@ -333,7 +344,12 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="{{ url_for('main.index') }}" class="logo">
+                <!-- Option 1: Text icon (current) -->
                 <div class="logo-icon">IG</div>
+
+                <!-- Option 2: Custom logo image - uncomment and add your image -->
+                <!-- <img src="{{ url_for('static', filename='logo.png') }}" alt="IGSCapital" class="logo-img"> -->
+
                 <span class="logo-text">IGSCapital</span>
             </a>
 
@@ -387,7 +403,12 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo">
+                        <!-- Option 1: Text icon (current) -->
                         <div class="logo-icon">IG</div>
+
+                        <!-- Option 2: Custom logo image - uncomment and add your image -->
+                        <!-- <img src="{{ url_for('static', filename='logo.png') }}" alt="IGSCapital" class="logo-img"> -->
+
                         <span class="logo-text">IGSCapital</span>
                     </div>
                     <p class="mt-4">Empowering your investment journey with knowledge, insights, and community support.</p>
