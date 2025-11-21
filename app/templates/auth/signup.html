@@ -13,77 +13,41 @@
         padding: 2rem;
     }
 
-    .auth-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        max-width: 1000px;
+    .auth-card {
+        max-width: 500px;
         width: 100%;
         background: white;
         border-radius: 24px;
-        overflow: hidden;
+        padding: 3rem;
         box-shadow: 0 25px 60px rgba(14, 165, 233, 0.2);
     }
 
-    .auth-visual {
+    .auth-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .auth-icon {
+        width: 70px;
+        height: 70px;
         background: linear-gradient(135deg, var(--primary), var(--secondary));
-        padding: 3rem;
+        border-radius: 20px;
         display: flex;
-        flex-direction: column;
+        align-items: center;
         justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
         color: white;
     }
 
-    .auth-visual h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .auth-visual p {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        line-height: 1.7;
-        margin-bottom: 2rem;
-    }
-
-    .auth-visual-icon {
-        font-size: 4rem;
-        margin-bottom: 2rem;
-        opacity: 0.9;
-    }
-
-    .benefits-list {
-        list-style: none;
-    }
-
-    .benefits-list li {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        font-size: 0.95rem;
-    }
-
-    .benefits-list li i {
-        color: #7dd3fc;
-    }
-
-    .auth-form-container {
-        padding: 3rem;
-    }
-
-    .auth-form-header {
-        margin-bottom: 2rem;
-    }
-
-    .auth-form-header h1 {
+    .auth-header h1 {
         font-size: 1.8rem;
         font-weight: 700;
         color: var(--dark);
         margin-bottom: 0.5rem;
     }
 
-    .auth-form-header p {
+    .auth-header p {
         color: var(--text-light);
     }
 
@@ -175,15 +139,7 @@
         text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
-        .auth-container {
-            grid-template-columns: 1fr;
-        }
-
-        .auth-visual {
-            display: none;
-        }
-
+    @media (max-width: 500px) {
         .form-row {
             grid-template-columns: 1fr;
         }
@@ -193,67 +149,52 @@
 
 {% block content %}
 <div class="auth-page">
-    <div class="auth-container">
-        <div class="auth-visual">
-            <div class="auth-visual-icon">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-icon">
                 <i class="fas fa-rocket"></i>
             </div>
-            <h2>Start Your Investment Journey</h2>
-            <p>Join our community and get access to everything you need to become a smarter investor.</p>
-
-            <ul class="benefits-list">
-                <li><i class="fas fa-check-circle"></i> Free educational materials</li>
-                <li><i class="fas fa-check-circle"></i> Daily market insights</li>
-                <li><i class="fas fa-check-circle"></i> Community support</li>
-                <li><i class="fas fa-check-circle"></i> Expert guidance</li>
-                <li><i class="fas fa-check-circle"></i> Progress tracking</li>
-            </ul>
+            <h1>Create Your Account</h1>
+            <p>Join thousands of learners building their financial future</p>
         </div>
 
-        <div class="auth-form-container">
-            <div class="auth-form-header">
-                <h1>Create Your Account</h1>
-                <p>Join thousands of learners building their financial future</p>
+        <form method="POST" action="{{ url_for('auth.signup') }}">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Choose a username" required>
             </div>
 
-            <form method="POST" action="{{ url_for('auth.signup') }}">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" class="form-input" placeholder="Choose a username" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" class="form-input" placeholder="Create password" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="confirm_password">Confirm Password</label>
-                        <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="Confirm password" required>
-                    </div>
-                </div>
-
-                <div class="terms-checkbox">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">
-                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I understand that investing involves risks.
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-submit">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </button>
-            </form>
-
-            <div class="auth-footer">
-                <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
             </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Create password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="Confirm password" required>
+                </div>
+            </div>
+
+            <div class="terms-checkbox">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">
+                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I understand that investing involves risks.
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit">
+                <i class="fas fa-user-plus"></i> Create Account
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
         </div>
     </div>
 </div>
