@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db, bcrypt
 from app.models import User
+from app.forms import ResetPasswordForm
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -67,3 +68,23 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('main.index'))
+
+@auth_bp.route('/reset', methods=['GET', 'POST'])
+def reset():
+    form = ResetPasswordForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+
+        if user:
+            # Hash the new password
+            hashed_password = bcrypt.generate_password_hash(form.new_password.data).decode('utf-8')
+            user.password = hashed_password
+            db.session.commit()
+
+            flash('Password reset successfully! Please login with your new password.', 'success')
+            return redirect(url_for('auth.login'))
+        else:
+            flash('Username not found', 'error')
+
+    return render_template('auth/reset.html', form=form)
