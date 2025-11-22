@@ -15,65 +15,72 @@
         font-weight: 700;
         color: var(--dark);
         margin-bottom: 1rem;
+        text-align: center;
     }
 
     .learn-hero p {
+
         font-size: 1.1rem;
+
         color: var(--text-light);
+
         max-width: 600px;
+
         margin: 0 auto;
+
+        text-align: center;
+
     }
 
     .courses-section {
-        padding: 5rem 2rem;
-        background: #fafafa;
-        min-height: 100vh;
+        padding: 4rem 2rem;
+        background: white;
     }
 
     .courses-container {
-        max-width: 1100px;
+        max-width: 1280px;
         margin: 0 auto;
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: var(--dark);
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
+        text-align: center;
     }
 
-    /* Grid layout - Stripe style */
     .courses-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.5rem;
+        max-width: 1100px;
+        margin: 0 auto;
     }
 
-    /* Card base */
     .course-card {
-        background: white;
-        border-radius: 16px;
-        border: 1px solid #e5e7eb;
+        background: var(--gray-50);
+        border-radius: 20px;
         overflow: hidden;
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
+        border: 1px solid var(--gray-200);
+        transition: all 0.3s;
     }
 
     .course-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-        border-color: #d1d5db;
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
+        border-color: var(--primary-light);
     }
 
-    /* Image container */
+    /* Course image - supports both img and icon fallback */
     .course-image {
-        height: 240px;
-        background: linear-gradient(135deg, #0ea5e9 0%, #7dd3fc 100%);
+        height: 180px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
+        font-size: 3rem;
+        color: white;
         overflow: hidden;
     }
 
@@ -83,111 +90,64 @@
         object-fit: cover;
     }
 
-    .course-image i {
-        font-size: 3.5rem;
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    /* Content */
     .course-content {
-        padding: 2rem;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
+        padding: 1.5rem;
     }
 
     .course-badge {
         display: inline-block;
-        padding: 0.4rem 0.9rem;
-        background: #eff6ff;
-        color: #0284c7;
-        border-radius: 6px;
-        font-size: 0.75rem;
+        padding: 0.35rem 0.75rem;
+        background: rgba(14, 165, 233, 0.1);
+        color: var(--primary);
+        border-radius: 20px;
+        font-size: 0.8rem;
         font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.025em;
-        margin-bottom: 1rem;
-        width: fit-content;
+        margin-bottom: 0.75rem;
     }
 
     .course-content h3 {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 0.75rem;
-        line-height: 1.3;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
     }
 
     .course-content p {
-        font-size: 1rem;
-        color: #6b7280;
+        font-size: 0.95rem;
+        color: var(--text-light);
         line-height: 1.6;
-        margin-bottom: 1.5rem;
-        flex-grow: 1;
-    }
-
-    /* Footer section */
-    .course-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1.25rem;
-        border-top: 1px solid #e5e7eb;
+        margin-bottom: 1rem;
     }
 
     .course-meta {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        color: #6b7280;
+        padding-top: 1rem;
+        border-top: 1px solid var(--gray-200);
     }
 
-    .course-meta i {
-        color: #0ea5e9;
+    .course-meta span {
         font-size: 0.85rem;
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .course-meta span i {
+        color: var(--primary);
     }
 
     .btn-start {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.95rem;
-        font-weight: 600;
-        border-radius: 8px;
-        transition: all 0.2s;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
     }
 
-    .btn-start:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
-    }
-
-    /* Responsive */
-    @media (max-width: 968px) {
+    @media (max-width: 768px) {
         .courses-grid {
             grid-template-columns: 1fr;
-        }
-
-        .course-image {
-            height: 200px;
-        }
-
-        .course-content h3 {
-            font-size: 1.25rem;
-        }
-    }
-
-    @media (max-width: 640px) {
-        .courses-section {
-            padding: 3rem 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .course-content {
-            padding: 1.5rem;
+            max-width: 400px;
         }
     }
 </style>
@@ -204,20 +164,18 @@
         <h2 class="section-title">Featured Courses</h2>
 
         <div class="courses-grid">
-            <!-- Course 1 -->
+            <!-- Course 1 - Add your image: src="{{ url_for('static', filename='courses/course1.jpg') }}" -->
             <div class="course-card">
                 <div class="course-image">
-                    <!-- Add your image: <img src="{{ url_for('static', filename='courses/investment.png') }}" alt="Investment Basics"> -->
-                    <i class="fas fa-chart-line"></i>
+                    <!-- Replace icon with: <img src="{{ url_for('static', filename='courses/investment-basics.jpg') }}" alt="Investment Basics"> -->
+                    <img src="{{ url_for('static', filename='courses/investment.png') }}" alt="Investment Basics">
                 </div>
                 <div class="course-content">
                     <span class="course-badge">Beginner</span>
                     <h3>Investment Basics 101</h3>
                     <p>Learn the fundamentals of investing, from stocks and bonds to understanding market dynamics.</p>
-                    <div class="course-footer">
-                        <span class="course-meta">
-                            <i class="fas fa-book"></i> 12 Lessons
-                        </span>
+                    <div class="course-meta">
+                        <span><i class="fas fa-book"></i> 12 Lessons</span>
                         <a href="#" class="btn btn-primary btn-start">Start</a>
                     </div>
                 </div>
@@ -226,17 +184,15 @@
             <!-- Course 2 -->
             <div class="course-card">
                 <div class="course-image">
-                    <!-- Add your image: <img src="{{ url_for('static', filename='courses/risk.png') }}" alt="Risk Management"> -->
-                    <i class="fas fa-shield-alt"></i>
+                    <!-- Replace icon with: <img src="{{ url_for('static', filename='courses/risk-management.jpg') }}" alt="Risk Management"> -->
+                    <img src="{{ url_for('static', filename='courses/risk.png') }}" alt="Risk Management">
                 </div>
                 <div class="course-content">
                     <span class="course-badge">Beginner</span>
                     <h3>Risk Management</h3>
                     <p>Understand how to protect your investments and manage risk effectively in any market condition.</p>
-                    <div class="course-footer">
-                        <span class="course-meta">
-                            <i class="fas fa-book"></i> 8 Lessons
-                        </span>
+                    <div class="course-meta">
+                        <span><i class="fas fa-book"></i> 8 Lessons</span>
                         <a href="#" class="btn btn-primary btn-start">Start</a>
                     </div>
                 </div>
@@ -245,17 +201,15 @@
             <!-- Course 3 -->
             <div class="course-card">
                 <div class="course-image">
-                    <!-- Add your image: <img src="{{ url_for('static', filename='courses/portfolio.png') }}" alt="Portfolio Building"> -->
-                    <i class="fas fa-chart-pie"></i>
+                    <!-- Replace icon with: <img src="{{ url_for('static', filename='courses/portfolio.jpg') }}" alt="Portfolio Building"> -->
+                    <img src="{{ url_for('static', filename='courses/portfolio.png') }}" alt="Portfolio Building">
                 </div>
                 <div class="course-content">
                     <span class="course-badge">Intermediate</span>
                     <h3>Portfolio Building</h3>
                     <p>Learn how to build a diversified portfolio that aligns with your financial goals and risk tolerance.</p>
-                    <div class="course-footer">
-                        <span class="course-meta">
-                            <i class="fas fa-book"></i> 10 Lessons
-                        </span>
+                    <div class="course-meta">
+                        <span><i class="fas fa-book"></i> 10 Lessons</span>
                         <a href="#" class="btn btn-primary btn-start">Start</a>
                     </div>
                 </div>
@@ -264,17 +218,15 @@
             <!-- Course 4 -->
             <div class="course-card">
                 <div class="course-image">
-                    <!-- Add your image: <img src="{{ url_for('static', filename='courses/fundamental.png') }}" alt="Fundamental Analysis"> -->
-                    <i class="fas fa-search-dollar"></i>
+                    <!-- Replace icon with: <img src="{{ url_for('static', filename='courses/analysis.jpg') }}" alt="Fundamental Analysis"> -->
+                    <img src="{{ url_for('static', filename='courses/fundamental.png') }}" alt="Fundamental Analysis">
                 </div>
                 <div class="course-content">
                     <span class="course-badge">Intermediate</span>
                     <h3>Fundamental Analysis</h3>
                     <p>Discover how to analyze companies and make informed investment decisions based on data.</p>
-                    <div class="course-footer">
-                        <span class="course-meta">
-                            <i class="fas fa-book"></i> 15 Lessons
-                        </span>
+                    <div class="course-meta">
+                        <span><i class="fas fa-book"></i> 15 Lessons</span>
                         <a href="#" class="btn btn-primary btn-start">Start</a>
                     </div>
                 </div>
@@ -283,17 +235,15 @@
             <!-- Course 5 -->
             <div class="course-card">
                 <div class="course-image">
-                    <!-- Add your image: <img src="{{ url_for('static', filename='courses/understanding.png') }}" alt="Understanding Markets"> -->
-                    <i class="fas fa-globe-americas"></i>
+                    <!-- Replace icon with: <img src="{{ url_for('static', filename='courses/markets.jpg') }}" alt="Understanding Markets"> -->
+                    <img src="{{ url_for('static', filename='courses/understanding.png') }}" alt="Understanding Markets">
                 </div>
                 <div class="course-content">
                     <span class="course-badge">Beginner</span>
                     <h3>Understanding Markets</h3>
                     <p>Get familiar with different types of markets, how they work, and what drives price movements.</p>
-                    <div class="course-footer">
-                        <span class="course-meta">
-                            <i class="fas fa-book"></i> 9 Lessons
-                        </span>
+                    <div class="course-meta">
+                        <span><i class="fas fa-book"></i> 9 Lessons</span>
                         <a href="#" class="btn btn-primary btn-start">Start</a>
                     </div>
                 </div>
@@ -302,17 +252,15 @@
             <!-- Course 6 -->
             <div class="course-card">
                 <div class="course-image">
-                    <!-- Add your image: <img src="{{ url_for('static', filename='courses/longterm.png') }}" alt="Long-term Investing"> -->
-                    <i class="fas fa-piggy-bank"></i>
+                    <!-- Replace icon with: <img src="{{ url_for('static', filename='courses/longterm.jpg') }}" alt="Long-term Investing"> -->
+                     <img src="{{ url_for('static', filename='courses/longterm.png') }}" alt="Long-term Investing">
                 </div>
                 <div class="course-content">
                     <span class="course-badge">Beginner</span>
                     <h3>Long-term Investing</h3>
                     <p>Master the art of patient investing and learn strategies for building wealth over time.</p>
-                    <div class="course-footer">
-                        <span class="course-meta">
-                            <i class="fas fa-book"></i> 11 Lessons
-                        </span>
+                    <div class="course-meta">
+                        <span><i class="fas fa-book"></i> 11 Lessons</span>
                         <a href="#" class="btn btn-primary btn-start">Start</a>
                     </div>
                 </div>
